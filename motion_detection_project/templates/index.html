@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motion Detection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <center><h1>Motion Detection</h1></center>
+        <center><button id="startButton" class="btn btn-primary">Start Motion Detection</button></center>
+    </div>
+
+    <script>
+        document.getElementById('startButton').addEventListener('click', function() {
+            fetch('/start-motion-detection')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to start motion detection');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    alert(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>
